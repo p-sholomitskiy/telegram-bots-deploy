@@ -1,0 +1,6 @@
+[submodule "bots/comedy-hall"]
+	path = bots/comedy-hall
+	url = https://github.com/p-sholomitskiy/comedy-hall-reg-bot-google-sheet-api.git
+[submodule "bots/globusbus"]
+	path = bots/globusbus
+	url = https://github.com/p-sholomitskiy/globusbus-tracker-bot.git
