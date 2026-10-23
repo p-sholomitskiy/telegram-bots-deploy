@@ -28,7 +28,7 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
           heroku container:login
-          heroku container:push worker -a comedy-hall-bot
+          heroku container:push worker --recursive --context-path . -a comedy-hall-bot
 
       - name: Release Docker image
         if: ${{ inputs.release }}
