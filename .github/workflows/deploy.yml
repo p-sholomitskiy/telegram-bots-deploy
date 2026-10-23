@@ -3,6 +3,12 @@ name: Deploy Telegram Bots
 
 on:
   workflow_dispatch:
+    inputs:
+      release:
+        description: "Release container to Heroku after build"
+        required: true
+        type: boolean
+        default: false
 
 jobs:
   deploy:
@@ -17,10 +23,16 @@ jobs:
       - name: Install Heroku CLI
         run: curl https://cli-assets.heroku.com/install.sh | sh
 
-      - name: Deploy to Heroku
+      - name: Build and push Docker image
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
           heroku container:login
           heroku container:push worker -a comedy-hall-bot
+
+      - name: Release Docker image
+        if: ${{ inputs.release }}
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
           heroku container:release worker -a comedy-hall-bot
