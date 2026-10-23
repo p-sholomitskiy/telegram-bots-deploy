@@ -7,7 +7,7 @@
     "install:bots": "npm ci --prefix bots/comedy-hall && npm ci --prefix bots/globusbus",
     "build:bots": "npm run build --prefix bots/comedy-hall && npm run build --prefix bots/globusbus",
     "heroku-postbuild": "npm run install:bots && npm run build:bots",
-    "start": "concurrently --kill-others-on-fail \"cd bots/comedy-hall && npm start\" \"cd bots/globusbus && npm start\"",
+    "start": "concurrently --kill-others --success all \"cd bots/comedy-hall && npm start\" \"cd bots/globusbus && npm start\"",
     "start:local": "node --env-file=.env ./node_modules/concurrently/dist/bin/concurrently.js --kill-others-on-fail \"cd bots/comedy-hall && npm start\" \"cd bots/globusbus && npm start\""
   },
   "keywords": [],
